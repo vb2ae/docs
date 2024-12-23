@@ -59,7 +59,7 @@ We recommend that you have a basic understanding of the .NET Core SDK. For more 
        - name: Setup .NET
          uses: {% data reusables.actions.action-setup-dotnet %}
          with:
-           dotnet-version: 6.0.x
+           dotnet-version: 8.0.x
        - name: Restore dependencies
          run: dotnet restore
        - name: Build
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '3.1.x', '6.0.x' ]
+        dotnet-version: [ '8.0.x', '9.0.x' ]
 
     steps:
       - uses: {% data reusables.actions.action-checkout %}
@@ -111,14 +111,14 @@ jobs:
 
 ### Using a specific .NET version
 
-You can configure your job to use a specific version of .NET, such as `6.0.22`. Alternatively, you can use semantic version syntax to get the latest minor release. This example uses the latest minor release of .NET 6.
+You can configure your job to use a specific version of .NET, such as `8.0.22`. Alternatively, you can use semantic version syntax to get the latest minor release. This example uses the latest minor release of .NET 6.
 
 ```yaml
-    - name: Setup .NET 6.x
+    - name: Setup .NET 8.x
       uses: {% data reusables.actions.action-setup-dotnet %}
       with:
         # Semantic version range syntax or exact version of a dotnet version
-        dotnet-version: '6.x'
+        dotnet-version: '8.x'
 ```
 
 ## Installing dependencies
@@ -131,9 +131,9 @@ steps:
 - name: Setup dotnet
   uses: {% data reusables.actions.action-setup-dotnet %}
   with:
-    dotnet-version: '6.0.x'
+    dotnet-version: '8.0.x'
 - name: Install dependencies
-  run: dotnet add package Newtonsoft.Json --version 12.0.1
+  run: dotnet add package Newtonsoft.Json --version 13.0.1
 ```
 
 ### Caching dependencies
@@ -148,10 +148,10 @@ steps:
 - name: Setup dotnet
   uses: {% data reusables.actions.action-setup-dotnet %}
   with:
-    dotnet-version: '6.x'
+    dotnet-version: '8.x'
     cache: true
 - name: Install dependencies
-  run: dotnet add package Newtonsoft.Json --version 12.0.1
+  run: dotnet add package Newtonsoft.Json --version 13.0.3
 ```
 
 > [!NOTE]
@@ -167,7 +167,7 @@ steps:
 - name: Setup dotnet
   uses: {% data reusables.actions.action-setup-dotnet %}
   with:
-    dotnet-version: '6.0.x'
+    dotnet-version: '8.0.x'
 - name: Install dependencies
   run: dotnet restore
 - name: Build
@@ -193,7 +193,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '3.1.x', '6.0.x' ]
+        dotnet-version: [ '8.0.x', '9.0.x' ]
 
       steps:
         - uses: {% data reusables.actions.action-checkout %}
@@ -235,7 +235,7 @@ jobs:
       - uses: {% data reusables.actions.action-checkout %}
       - uses: {% data reusables.actions.action-setup-dotnet %}
         with:
-          dotnet-version: '6.0.x' # SDK Version to use.
+          dotnet-version: '8.0.x' # SDK Version to use.
           source-url: https://nuget.pkg.github.com/<owner>/index.json
         env:
           NUGET_AUTH_TOKEN: {% raw %}${{secrets.GITHUB_TOKEN}}{% endraw %}
